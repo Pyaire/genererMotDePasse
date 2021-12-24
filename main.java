@@ -21,18 +21,20 @@ class main extends Program{
             delay(2000);
         }
         }while(!estPossible);
-        delay(200);
-        println("laisse moi melanger tout ca");
-        print(".");
-        delay(1000);
-        print(".");
-        delay(1000);
-        println(".");
-        delay(1500);
-        println("FINI :");
-        delay(1500);
+        // delay(200);
+        // println("laisse moi melanger tout ca");
+        // print(".");
+        // delay(1000);
+        // print(".");
+        // delay(1000);
+        // println(".");
+        // delay(1500);
+        // println("FINI :");
+        // delay(1500);
         String test = baseMDP(total,chiffres,spe,maj);
         println(test);
+        println(coder(test));
+        println(decoder(coder(test)));
         
     }
 
@@ -74,6 +76,32 @@ class main extends Program{
             String droite = substring(etape1, etat+1,length(etape1));
             etape1 = gauche + droite;
             // println(etape1);
+        }
+        return fin;
+    }
+
+    String coder(String mdp){
+        String fin = "";
+        int taille = length(mdp);
+        char enCours;
+        int changement = taille % 4;
+        for (int i = 0 ; i < taille ; i++){
+            enCours = charAt(mdp,i);
+            enCours =(char) (enCours + changement);
+            fin += enCours;
+        }
+        return fin;
+    }
+
+    String decoder (String mdp){
+        String fin = "";
+        int taille = length(mdp);
+        char enCours;
+        int changement = taille % 4;
+        for (int i = 0 ; i < taille ; i++){
+            enCours = charAt(mdp,i);
+            enCours = (char) (enCours - changement);
+            fin += enCours;
         }
         return fin;
     }
